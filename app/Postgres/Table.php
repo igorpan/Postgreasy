@@ -36,9 +36,29 @@ SQL;
 
         $columns = [];
         foreach ($stmt->fetchAll() as $row) {
-            $columns[] = new Column($row['column_name']);
+            $columns[] = new Column($row['column_name'], $row['data_type']);
         }
         return $columns;
+    }
+
+    /**
+     * @param int $offset
+     * @param int $limit
+     *
+     * @return DataRow[]
+     */
+    public function getRows($offset, $limit)
+    {
+        $sql = "SELECT * FROM {$this->name} LIMIT {$limit} OFFSET {$offset}";
+
+        $stmt = $this->connection->query($sql);
+        $stmt->execute();
+
+        $data = [];
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+            $data[] = new DataRow($row);
+        }
+        return $data;
     }
 
     /**

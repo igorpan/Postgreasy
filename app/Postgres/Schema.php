@@ -45,6 +45,20 @@ class Schema
         return $tables;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return Table
+     */
+    public function getTable($name)
+    {
+        foreach ($this->getTables() as $table) {
+            if ($table->getName() === $name) {
+                return $table;
+            }
+        }
+    }
+
     private function getConnection()
     {
         if (null === $this->connection) {

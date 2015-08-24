@@ -33,4 +33,18 @@ class Manager
 
         return $schemas;
     }
+
+    /**
+     * @param string $name
+     *
+     * @return Schema
+     */
+    public function getSchema($name)
+    {
+        foreach ($this->getSchemas() as $schema) {
+            if ($schema->getName() === $name) {
+                return $schema;
+            }
+        }
+    }
 }

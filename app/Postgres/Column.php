@@ -7,9 +7,13 @@ class Column
     /** @var string */
     private $name;
 
-    public function __construct($name)
+    /** @var string */
+    private $type;
+
+    public function __construct($name, $type)
     {
         $this->name = $name;
+        $this->type = $type;
     }
 
     /**
@@ -18,6 +22,14 @@ class Column
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
